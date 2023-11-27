@@ -1,1 +1,1 @@
-# Python-Deadline-Manager-Console-App
+# Python Deadline Manager Console App
