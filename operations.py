@@ -6,8 +6,11 @@ class Operations:
     def __init__(self):
         self.deadlines = []
         
-    def createDeadline():
-        return "asd"
+    def createDeadline(self, name, date, time, location, note):
+        deadlines = Deadline(name, date, time, location, note)
+        with open(filename, "a", encoding="utf-8") as f:
+            f.write(f"{str(deadlines)}\n")
+        return deadlines
 
     def deleteDeadline():
         return "asd"
