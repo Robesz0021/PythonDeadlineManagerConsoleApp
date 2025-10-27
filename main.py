@@ -34,8 +34,6 @@ def main():
             continue
 
         if choice == 1:
-
-            #Create new Deadline
             name = input("Enter the deadline's name: ")
             date = input("Enter date (YYYY-MM-DD): ")
             time = input("Enter time (HH:MM): ")
@@ -60,16 +58,12 @@ def main():
                 print("Please fill out the full form! (If there is no note, please write a \"-\" to the note question.)")
 
         elif choice == 2:
-
-            #Delete existing Deadline - Search by name
             name = input("Enter the name of the Deadline you want to delete: ")
 
             if name != "" and name != int:
                 operations.deleteDeadline(name)
 
         elif choice == 3:
-
-            #Modify existing Deadline - Search by name
             name = input("Enter the deadline's name you want to modify: ")
             nameChange = input("Enter the new name: ")
             date = input("Enter date (YYYY-MM-DD): ")
@@ -92,13 +86,42 @@ def main():
             operations.modifyDeadline(name, nameChange, date, time, location, note)
 
         elif choice == 4:
-            pass
+            name = input("Enter the name of the Deadline you want to search: ")
+
+            if name != "" and name != int:
+                operations.searchDeadlinebyName(name)
         elif choice == 5:
-            pass
+            date = input("Enter the date (YYYY-MM-DD) to list deadlines: ")
+            try:
+                datetime.datetime.strptime(date, "%Y-%m-%d")
+            except ValueError:
+                print("Invalid date format. Please use (YYYY-MM-DD).")
+                continue
+            operations.listDeadlinesByDate(date)
         elif choice == 6:
-            pass
+            week = input("Enter the week number (1-53) to list deadlines: ")
+            year = input("Enter the year (YYYY): ")
+            try:
+                week = int(week)
+                year = int(year)
+                if week < 1 or week > 53:
+                    raise ValueError
+            except ValueError:
+                print("Invalid week or year format.")
+                continue
+            operations.listDeadlinesByWeek(year, week)
         elif choice == 7:
-            pass
+            month = input("Enter the month (1-12) to list deadlines: ")
+            year = input("Enter the year (YYYY): ")
+            try:
+                month = int(month)
+                year = int(year)
+                if month < 1 or month > 12:
+                    raise ValueError
+            except ValueError:
+                print("Invalid month or year format.")
+                continue
+            operations.listDeadlinesByMonth(year, month)
         elif choice == 0:
             print("Program stopped!")
         elif choice < 0 and choice > 7:
